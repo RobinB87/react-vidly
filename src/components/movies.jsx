@@ -8,6 +8,7 @@ class Movies extends Component {
 
   handleDelete = (movieId) => {
     const movies = this.state.movies.filter((movie) => movie._id !== movieId);
+    // this.setState({ movies: movies }); // this is not required as key and name are equal
     this.setState({ movies });
   };
 
