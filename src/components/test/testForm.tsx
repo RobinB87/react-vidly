@@ -18,6 +18,7 @@ function TestForm() {
     e.preventDefault();
 
     console.log("Handle submit");
+    console.log("ShipmentPalletDetails = ", shipmentPalletDetails);
   };
 
   return (
