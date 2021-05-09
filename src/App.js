@@ -1,10 +1,13 @@
+import TestForm from "./components/test/testForm";
 import "./App.css";
-import Movies from "./components/movies";
+
+// import Movies from "./components/movies";
+// <Movies />
 
 function App() {
   return (
     <main className="container">
-      <Movies />
+      <TestForm />
     </main>
   );
 }
