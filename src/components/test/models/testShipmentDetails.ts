@@ -1,9 +1,6 @@
-interface IRawParams {
-    [key: string]: any
-}
+import { TestShipmentDetailsBase } from "./testShipmentDetailsBase";
 
-export interface ShipmentDetails extends IRawParams {
-    oplage: number;
+export interface TestShipmentDetails extends TestShipmentDetailsBase {
     numberPerPack: number;
     numberOfPacksPerLayer: number;
     numberOfItemsPerfullLayer: number;
@@ -16,18 +13,14 @@ export interface ShipmentDetails extends IRawParams {
 
     fullRestLayers: number;
     restLayerItems: number;
-
-    numberOfFullBoxes: number;
-    boxRestItems: number;
-
-    weight: number;
 }
 
-export const shipmentDetailsInitialState: ShipmentDetails = {
+export const testShipmentDetailsFullInit: TestShipmentDetails = ({
+    packageType: 0,
     oplage: 0,
+
     numberPerPack: 0,
     numberOfPacksPerLayer: 0,
-    numberOfItemsPerfullLayer: 0,
 
     numberOfLayers: 0,
     numberOfItemsPerFullPallet: 0,
@@ -38,8 +31,11 @@ export const shipmentDetailsInitialState: ShipmentDetails = {
     fullRestLayers: 0,
     restLayerItems: 0,
 
-    numberOfFullBoxes: 0,
-    boxRestItems: 0,
-
-    weight: 0
-}
+    amountOfItemsPerBox: 0,
+    totalNumberOfBoxes: 0,
+    amountOfItemsInRestBox: 0,
+    totalWeight: 0,
+    weightPerFullBox: 0,
+    weightOfRestBox: 0,
+    numberOfItemsPerfullLayer: 0
+})
