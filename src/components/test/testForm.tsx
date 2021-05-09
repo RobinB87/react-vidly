@@ -1,33 +1,56 @@
 import React, { ChangeEvent, useState } from "react";
 import { FormControl, Grid, InputAdornment, TextField, Button, Select, MenuItem } from "@material-ui/core";
-import { testShipmentDetailsFullInit } from "./models/testShipmentDetails";
+import { TestShipmentDetails, testShipmentDetailsFullInit } from "./models/testShipmentDetails";
 
 function TestForm() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     console.log("Handle submit");
-    console.log("ShipmentPalletDetails = ", shipmentPalletDetails);
+    console.log("ShipmentPalletDetails = ", shipmentDetails);
   };
 
   const packageTypes = [
     { value: 1, label: "DoosA4" },
     { value: 2, label: "EuropaPallet" },
   ];
-  const [shipmentPalletDetails, setShipmentPalletDetails] = useState(testShipmentDetailsFullInit);
+  const [shipmentDetails, setShipmentDetails] = useState(testShipmentDetailsFullInit);
 
   const handleChangePackageType = ({ target: input }: any) => {
-    const shipment = { ...shipmentPalletDetails };
+    const shipment = { ...shipmentDetails };
     shipment.packageType = input.value;
-    setShipmentPalletDetails(shipment);
+    resetFormFields(shipment);
+
+    setShipmentDetails(shipment);
   };
 
   const handleChangeShipmentPalletDetails = ({
     currentTarget: input,
   }: ChangeEvent<{ name: string; value: unknown }>) => {
-    const shipment = { ...shipmentPalletDetails };
+    const shipment = { ...shipmentDetails };
     shipment[input.name] = input.value;
-    setShipmentPalletDetails(shipment);
+    setShipmentDetails(shipment);
+  };
+
+  const resetFormFields = (shipment: TestShipmentDetails) => {
+    if (shipment.packageType === 1) {
+      shipment.numberPerPack = 0;
+      shipment.numberOfPacksPerLayer = 0;
+      shipment.numberOfItemsPerfullLayer = 0;
+      shipment.numberOfLayers = 0;
+      shipment.numberOfItemsPerFullPallet = 0;
+      shipment.fullPallets = 0;
+      shipment.palletRestItems = 0;
+      shipment.fullRestLayers = 0;
+      shipment.restLayerItems = 0;
+    } else {
+      shipment.amountOfItemsPerBox = 0;
+      shipment.totalNumberOfBoxes = 0;
+      shipment.amountOfItemsInRestBox = 0;
+      shipment.weightPerFullBox = 0;
+      shipment.weightOfRestBox = 0;
+    }
+    setShipmentDetails(shipment);
   };
 
   return (
@@ -41,7 +64,7 @@ function TestForm() {
                 name="packageType"
                 label="Selecteer pack type"
                 onChange={handleChangePackageType}
-                value={shipmentPalletDetails.packageType}
+                value={shipmentDetails.packageType}
                 displayEmpty
                 inputProps={{
                   name: "packingType",
@@ -60,15 +83,15 @@ function TestForm() {
                 name="oplage"
                 label="Oplage"
                 onChange={handleChangeShipmentPalletDetails}
-                value={shipmentPalletDetails.oplage}
+                value={shipmentDetails.oplage}
               />
             </FormControl>
 
-            {!shipmentPalletDetails?.packageType ? (
+            {!shipmentDetails?.packageType ? (
               <Grid></Grid>
             ) : (
               <Grid>
-                {shipmentPalletDetails?.packageType === 1 ? (
+                {shipmentDetails?.packageType === 1 ? (
                   <Grid>
                     <FormControl>
                       <TextField
@@ -76,7 +99,7 @@ function TestForm() {
                         name="amountOfItemsPerBox"
                         label="Aantal items per doos"
                         onChange={handleChangeShipmentPalletDetails}
-                        value={shipmentPalletDetails.amountOfItemsPerBox}
+                        value={shipmentDetails.amountOfItemsPerBox}
                       />
                     </FormControl>
                   </Grid>
@@ -88,7 +111,7 @@ function TestForm() {
                         name="numberPerPack"
                         label="Aantal per pak"
                         onChange={handleChangeShipmentPalletDetails}
-                        value={shipmentPalletDetails.numberPerPack}
+                        value={shipmentDetails.numberPerPack}
                       />
                     </FormControl>
                     <FormControl>
@@ -97,7 +120,7 @@ function TestForm() {
                         name="numberOfPacksPerLayer"
                         label="Aantal pakken per laag"
                         onChange={handleChangeShipmentPalletDetails}
-                        value={shipmentPalletDetails.numberOfPacksPerLayer}
+                        value={shipmentDetails.numberOfPacksPerLayer}
                       />
                     </FormControl>
                     <FormControl>
@@ -106,7 +129,7 @@ function TestForm() {
                         name="numberOfLayers"
                         label="Aantal lagen"
                         onChange={handleChangeShipmentPalletDetails}
-                        value={shipmentPalletDetails.numberOfLayers}
+                        value={shipmentDetails.numberOfLayers}
                       />
                     </FormControl>
                   </Grid>
@@ -123,7 +146,7 @@ function TestForm() {
                   endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
                 }}
                 onChange={handleChangeShipmentPalletDetails}
-                value={shipmentPalletDetails.weight}
+                value={shipmentDetails.weight}
               />
             </FormControl>
           </Grid>
