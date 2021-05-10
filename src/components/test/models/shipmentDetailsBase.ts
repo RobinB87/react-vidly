@@ -2,7 +2,7 @@ interface IRawParams {
     [key: string]: any
 }
 
-export interface TestShipmentDetailsBase extends IRawParams {
+export interface ShipmentDetailsBase extends IRawParams {
     packageType: number;
     oplage: number;
     totalWeight: number;

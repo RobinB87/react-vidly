@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { FormControl, Grid, InputAdornment, TextField, Button, Select, MenuItem } from "@material-ui/core";
-import { resetFormFields, testShipmentDetailsFullInit } from "./models/testShipmentDetails";
+import { resetFormFields, testShipmentDetailsFullInit } from "./models/shipmentDetails";
 
 function TestForm() {
   const handleSubmit = (e: any) => {
