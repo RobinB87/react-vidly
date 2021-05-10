@@ -15,6 +15,26 @@ export interface TestShipmentDetails extends TestShipmentDetailsBase {
     restLayerItems: number;
 }
 
+export const resetFormFields = (shipment: TestShipmentDetails) => {
+    if (shipment.packageType === 1) {
+        shipment.numberPerPack = 0;
+        shipment.numberOfPacksPerLayer = 0;
+        shipment.numberOfItemsPerfullLayer = 0;
+        shipment.numberOfLayers = 0;
+        shipment.numberOfItemsPerFullPallet = 0;
+        shipment.fullPallets = 0;
+        shipment.palletRestItems = 0;
+        shipment.fullRestLayers = 0;
+        shipment.restLayerItems = 0;
+    } else {
+        shipment.amountOfItemsPerBox = 0;
+        shipment.totalNumberOfBoxes = 0;
+        shipment.amountOfItemsInRestBox = 0;
+        shipment.weightPerFullBox = 0;
+        shipment.weightOfRestBox = 0;
+    }
+};
+
 export const testShipmentDetailsFullInit: TestShipmentDetails = ({
     packageType: 0,
     oplage: 0,

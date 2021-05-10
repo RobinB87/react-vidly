@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { FormControl, Grid, InputAdornment, TextField, Button, Select, MenuItem } from "@material-ui/core";
-import { TestShipmentDetails, testShipmentDetailsFullInit } from "./models/testShipmentDetails";
+import { resetFormFields, testShipmentDetailsFullInit } from "./models/testShipmentDetails";
 
 function TestForm() {
   const handleSubmit = (e: any) => {
@@ -29,27 +29,6 @@ function TestForm() {
   }: ChangeEvent<{ name: string; value: unknown }>) => {
     const shipment = { ...shipmentDetails };
     shipment[input.name] = input.value;
-    setShipmentDetails(shipment);
-  };
-
-  const resetFormFields = (shipment: TestShipmentDetails) => {
-    if (shipment.packageType === 1) {
-      shipment.numberPerPack = 0;
-      shipment.numberOfPacksPerLayer = 0;
-      shipment.numberOfItemsPerfullLayer = 0;
-      shipment.numberOfLayers = 0;
-      shipment.numberOfItemsPerFullPallet = 0;
-      shipment.fullPallets = 0;
-      shipment.palletRestItems = 0;
-      shipment.fullRestLayers = 0;
-      shipment.restLayerItems = 0;
-    } else {
-      shipment.amountOfItemsPerBox = 0;
-      shipment.totalNumberOfBoxes = 0;
-      shipment.amountOfItemsInRestBox = 0;
-      shipment.weightPerFullBox = 0;
-      shipment.weightOfRestBox = 0;
-    }
     setShipmentDetails(shipment);
   };
 
