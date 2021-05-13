@@ -1,4 +1,3 @@
-import React from "react";
 import { FormControl, Grid, InputAdornment, TextField, Select, MenuItem } from "@material-ui/core";
 
 const TestForm = (props: any) => {

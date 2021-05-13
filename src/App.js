@@ -1,4 +1,4 @@
-import TestForm from "./components/test/testForm";
+import TestForm from "./components/test/forms/testForm";
 import "./App.css";
 
 // import Movies from "./components/movies";
