@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
 import React, { ChangeEvent, useState } from "react";
 import { resetFormFields, testShipmentDetailsFullInit } from "./models/shipmentDetails";
+import { sendToSendShipmentTest } from "./processFormInput";
 import TestForm from "./testForm";
 
 const ParentForm = () => {
@@ -9,6 +10,7 @@ const ParentForm = () => {
 
     console.log("Handle submit");
     console.log("ShipmentPalletDetails = ", shipmentDetails);
+    sendToSendShipmentTest(shipmentDetails);
   };
 
   const packageTypes = [
