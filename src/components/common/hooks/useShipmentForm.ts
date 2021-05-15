@@ -3,18 +3,11 @@ import { resetFormFields, ShipmentDetails } from "../../test/models/shipmentDeta
 import { sendToSendShipmentTest } from "../../test/processFormInput";
 
 const useShipmentForm = (testShipmentDetailsFullInit: ShipmentDetails) => {
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-
-        console.log("Handle submit");
-        console.log("ShipmentPalletDetails = ", shipmentDetails);
-        sendToSendShipmentTest(shipmentDetails);
-    };
-
     const packageTypes = [
         { value: 1, label: "DoosA4" },
         { value: 2, label: "EuropaPallet" },
     ];
+
     const [shipmentDetails, setShipmentDetails] = useState(testShipmentDetailsFullInit);
 
     const handleChangePackageType = ({ target: input }: any) => {
@@ -29,6 +22,14 @@ const useShipmentForm = (testShipmentDetailsFullInit: ShipmentDetails) => {
         const shipment = { ...shipmentDetails };
         shipment[input.name] = input.value;
         setShipmentDetails(shipment);
+    };
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+
+        console.log("Handle submit");
+        console.log("ShipmentPalletDetails = ", shipmentDetails);
+        sendToSendShipmentTest(shipmentDetails);
     };
 
     return { packageTypes, shipmentDetails, handleChangePackageType, handleChangeShipmentDetails, handleSubmit };
