@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Login } from "../common/models/login";
 import ValidateLogin from "./validateLogin";
+import "../../index.css";
 
 const LoginForm = () => {
   const [login, setLogin] = useState<Login>({ userName: "", password: "", name: "" });
@@ -29,16 +30,37 @@ const LoginForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
-        <input id="userName" name="userName" type="text" onChange={handleChange} value={login.userName} />
-        {errors.userName && <p>{errors.userName}</p>}
+        <input
+          id="userName"
+          name="userName"
+          type="text"
+          onChange={handleChange}
+          value={login.userName}
+          className={`${errors.userName && "inputError"}`}
+        />
+        {errors.userName && <p className="error">{errors.userName}</p>}
 
         <label>Password</label>
-        <input id="password" name="password" type="text" onChange={handleChange} value={login.password} />
-        {errors.password && <p>{errors.password}</p>}
+        <input
+          id="password"
+          name="password"
+          type="text"
+          onChange={handleChange}
+          value={login.password}
+          className={`${errors.password && "inputError"}`}
+        />
+        {errors.password && <p className="error">{errors.password}</p>}
 
         <label>Name</label>
-        <input id="name" name="name" type="text" onChange={handleChange} value={login.name} />
-        {errors.name && <p>{errors.name}</p>}
+        <input
+          id="name"
+          name="name"
+          type="text"
+          onChange={handleChange}
+          value={login.name}
+          className={`${errors.name && "inputError"}`}
+        />
+        {errors.name && <p className="error">{errors.name}</p>}
 
         <button className="btn btn-primary">Submit</button>
       </form>

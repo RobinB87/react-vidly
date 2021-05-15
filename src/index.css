@@ -10,3 +10,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.error {
+  color: red;
+  font-size: 10;
+}
+
+.inputError {
+  border-color: red;
+}
