@@ -22,6 +22,7 @@ const LoginForm = () => {
     // When no error keys exist in the errors object, the console log is fired.
     if (Object.keys(errors).length > 0) return;
     console.log("Submit login!", login);
+    // Here I can for example perform a callback function, which can be added as a param of this login form
   }, [errors]);
 
   return (
