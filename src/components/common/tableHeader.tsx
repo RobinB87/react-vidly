@@ -2,14 +2,14 @@ const TableHeader = (props: any) => {
   const { columns, sortColumn, onSort } = props;
 
   const raiseSort = (path: string) => {
-    const sortColumn = { ...props.sortColumn };
-    if (sortColumn.path === path) sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    const sortColumnNew = { ...sortColumn };
+    if (sortColumnNew.path === path) sortColumnNew.order = sortColumnNew.order === "asc" ? "desc" : "asc";
     else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
+      sortColumnNew.path = path;
+      sortColumnNew.order = "asc";
     }
 
-    props.onSort(sortColumn);
+    onSort(sortColumnNew);
   };
 
   return (
