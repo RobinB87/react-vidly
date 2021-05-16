@@ -5,6 +5,7 @@ import MoviesTable from "./moviesTable";
 import Pagination from "../common/pagination";
 import { paginate } from "../../utils/paginate";
 import { getGenres } from "../../services/fakeGenreService";
+import _ from "lodash";
 
 class Movies extends Component {
   state = {
@@ -13,6 +14,7 @@ class Movies extends Component {
     selectedGenre: {},
     currentPage: 1,
     pageSize: 4,
+    sortColumn: { path: "title", order: "asc" },
   };
 
   // With hooks:
@@ -49,12 +51,26 @@ class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
+  handleSort = (path) => {
+    const sortColumn = { ...this.state.sortColumn };
+    if (sortColumn.path === path) sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    else {
+      sortColumn.path = path;
+      sortColumn.order = "asc";
+    }
+
+    this.setState({ sortColumn });
+  };
+
   render() {
-    const { pageSize, currentPage, movies: allMovies, genres, selectedGenre } = this.state;
+    const { pageSize, currentPage, movies: allMovies, genres, selectedGenre, sortColumn } = this.state;
+
     const filtered =
       selectedGenre && selectedGenre._id ? allMovies.filter((m) => m.genre._id === selectedGenre._id) : allMovies;
-    const movies = paginate(filtered, currentPage, pageSize);
     const numberOfMovies = filtered.length;
+
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+    const movies = paginate(sorted, currentPage, pageSize);
 
     if (numberOfMovies === 0) return <p>There are no movies in the database!</p>;
 
@@ -68,7 +84,7 @@ class Movies extends Component {
         {/* div col will take up rest of the space */}
         <div className="col">
           <p>There are {numberOfMovies} movies in the database.</p>
-          <MoviesTable movies={movies} onLike={this.handleLike} onDelete={this.handleDelete} />
+          <MoviesTable movies={movies} onLike={this.handleLike} onDelete={this.handleDelete} onSort={this.handleSort} />
           <Pagination
             itemsCount={numberOfMovies}
             pageSize={pageSize}
