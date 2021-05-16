@@ -1,8 +1,6 @@
 import _ from "lodash";
 
-const TableBody = (props: any) => {
-  const { data, columns } = props;
-
+const TableBody = ({ data, columns }: any) => {
   const renderCell = (item: any, column: any) => {
     // the content is a function
     if (column.content) return column.content(item);

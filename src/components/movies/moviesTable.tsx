@@ -1,9 +1,7 @@
 import Like from "../common/like";
 import Table from "../common/table";
 
-const MoviesTable = (props: any) => {
-  const { movies, onDelete, onLike, onSort, sortColumn } = props;
-
+const MoviesTable = ({ movies, onDelete, onLike, onSort, sortColumn }: any) => {
   const columns = [
     { path: "title", label: "Title" },
     { path: "genre.name", label: "Genre" },

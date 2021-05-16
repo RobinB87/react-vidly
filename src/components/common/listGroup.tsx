@@ -1,6 +1,4 @@
-const ListGroup = (props: any) => {
-  const { items, textProperty, valueProperty, onItemSelect, selectedItem } = props;
-
+const ListGroup = ({ items, textProperty, valueProperty, onItemSelect, selectedItem }: any) => {
   return (
     <ul className="list-group">
       {items.map((item: any) => (

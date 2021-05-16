@@ -1,6 +1,4 @@
-const TableHeader = (props: any) => {
-  const { columns, sortColumn, onSort } = props;
-
+const TableHeader = ({ columns, sortColumn, onSort }: any) => {
   const raiseSort = (path: string) => {
     const sortColumnNew = { ...sortColumn };
     if (sortColumnNew.path === path) sortColumnNew.order = sortColumnNew.order === "asc" ? "desc" : "asc";
