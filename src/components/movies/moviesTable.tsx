@@ -1,5 +1,6 @@
 import Like from "../common/like";
 import TableHeader from "../common/tableHeader";
+import TableBody from "../common/tableBody";
 
 const MoviesTable = (props: any) => {
   const { movies, onDelete, onLike, onSort, sortColumn } = props;
@@ -15,7 +16,8 @@ const MoviesTable = (props: any) => {
   return (
     <table className="table">
       <TableHeader columns={columns} sortColumn={sortColumn} onSort={onSort} />
-      <tbody>
+      <TableBody columns={columns} data={movies} />
+      {/* <tbody>
         {movies.map((movie: any) => (
           <tr key={movie._id}>
             <td>{movie.title}</td>
@@ -32,7 +34,7 @@ const MoviesTable = (props: any) => {
             </td>
           </tr>
         ))}
-      </tbody>
+      </tbody> */}
     </table>
   );
 };
