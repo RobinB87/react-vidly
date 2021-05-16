@@ -45,7 +45,8 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre });
+    // also set current page to 1, otherwise pagination is stuck on last selected page when switching from all genres to another genre
+    this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
   render() {
