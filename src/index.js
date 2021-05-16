@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
+import Movies from "./components/movies/movies";
 import LoginForm from "./components/login/loginForm";
 import ParentForm from "./components/test/forms/parentForm";
 import "./index.css";
@@ -10,6 +11,7 @@ import "font-awesome/css/font-awesome.css";
 ReactDOM.render(
   <React.StrictMode>
     <LoginForm />
+    <Movies />
     <ParentForm />
   </React.StrictMode>,
   document.getElementById("root")
