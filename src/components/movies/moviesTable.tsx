@@ -1,7 +1,7 @@
 import Like from "../common/like";
 
 const MoviesTable = (props: any) => {
-  const { movies, onDelete, onLike, onSort } = props;
+  const { movies, onDelete, onLike } = props;
 
   const raiseSort = (path: string) => {
     const sortColumn = { ...props.sortColumn };
