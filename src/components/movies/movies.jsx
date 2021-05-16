@@ -11,7 +11,6 @@ class Movies extends Component {
   state = {
     movies: [],
     genres: [],
-    selectedGenre: {},
     currentPage: 1,
     pageSize: 4,
     sortColumn: { path: "title", order: "asc" },
@@ -55,28 +54,38 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
-  render() {
-    const { pageSize, currentPage, movies: allMovies, genres, selectedGenre, sortColumn } = this.state;
+  getPagedData = () => {
+    const { pageSize, currentPage, movies: allMovies, selectedGenre, sortColumn } = this.state;
 
     const filtered =
       selectedGenre && selectedGenre._id ? allMovies.filter((m) => m.genre._id === selectedGenre._id) : allMovies;
-    const numberOfMovies = filtered.length;
-
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     const movies = paginate(sorted, currentPage, pageSize);
 
-    if (numberOfMovies === 0) return <p>There are no movies in the database!</p>;
+    return { totalCount: filtered.length, data: movies };
+  };
+
+  render() {
+    const { length: count } = this.state.movies;
+    const { pageSize, currentPage, sortColumn } = this.state;
+    if (count === 0) return <p>There are no movies in the database!</p>;
+
+    const { totalCount, data: movies } = this.getPagedData();
 
     return (
       <div className="row">
         {/* div with width 3 */}
         <div className="col-3">
-          <ListGroup items={genres} selectedItem={selectedGenre} onItemSelect={this.handleGenreSelect} />
+          <ListGroup
+            items={this.state.genres}
+            selectedItem={this.state.selectedGenre}
+            onItemSelect={this.handleGenreSelect}
+          />
         </div>
 
         {/* div col will take up rest of the space */}
         <div className="col">
-          <p>There are {numberOfMovies} movies in the database.</p>
+          <p>There are {totalCount} movies in the database.</p>
           <MoviesTable
             movies={movies}
             sortColumn={sortColumn}
@@ -85,7 +94,7 @@ class Movies extends Component {
             onSort={this.handleSort}
           />
           <Pagination
-            itemsCount={numberOfMovies}
+            itemsCount={totalCount}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
