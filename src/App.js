@@ -9,7 +9,9 @@ import Rentals from "./components/fake/rentals";
 import NotFound from "./components/fake/notFound";
 
 import LoginForm from "./components/login/loginForm";
-import ParentForm from "./components/test/forms/parentForm";
+import RegisterForm from "./components/login/registerForm";
+
+import ParentForm from "./components/test/forms/parentForm"; // just some test form
 
 import "./App.css";
 
@@ -20,6 +22,7 @@ function App() {
       <main className="container">
         <Switch>
           <Route path="/login" component={LoginForm} />
+          <Route path="/register" component={RegisterForm} />
 
           <Route path="/movies/:id" component={MovieForm} />
           <Route path="/movies" component={Movies} />
