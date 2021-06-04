@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Pagination from "../common/pagination";
+import _ from "lodash";
+
 import { getMovies } from "../../services/fakeMovieService";
 import ListGroup from "../common/listGroup";
 import MoviesTable from "./moviesTable";
-import Pagination from "../common/pagination";
 import { paginate } from "../../utils/paginate";
 import { getGenres } from "../../services/fakeGenreService";
-import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -65,6 +67,12 @@ class Movies extends Component {
     return { totalCount: filtered.length, data: movies };
   };
 
+  // TODO:
+  // button: add movies
+  // create a form in that page
+  // title, genre (dropdown), nubmer in stock (0 - 100), rate (0 to 10)
+  // if you are in a movie/:id and change the id in the url, to a non existing movie (id), and then click back: go back to movie
+
   render() {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, sortColumn } = this.state;
@@ -85,6 +93,9 @@ class Movies extends Component {
 
         {/* div col will take up rest of the space */}
         <div className="col">
+          <Link to="/movies/new" className="btn btn-primary">
+            Add
+          </Link>
           <p>There are {totalCount} movies in the database.</p>
           <MoviesTable
             movies={movies}
