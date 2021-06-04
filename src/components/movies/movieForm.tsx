@@ -1,7 +1,14 @@
 import React from "react";
 
-const Movies = ({ match }: any) => {
-  return <h1>Movie Form {match.params.id}</h1>;
+const Movies = ({ match, history }: any) => {
+  return (
+    <div>
+      <h1>Movie Form {match.params.id}</h1>
+      <button className="btn btn-primary" onClick={() => history.push("/movies")}>
+        Save
+      </button>
+    </div>
+  );
 };
 
 export default Movies;
