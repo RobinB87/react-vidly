@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Login } from "../common/models/login";
 import ValidateLogin from "./validateLogin";
+import Input from "../common/input";
 import "../../index.css";
 
 const LoginForm = () => {
@@ -32,20 +33,7 @@ const LoginForm = () => {
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="userName">Username</label>
-          <input
-            autoFocus
-            id="userName"
-            name="userName"
-            type="text"
-            onChange={handleChange}
-            value={login.userName}
-            className={`form-control ${errors.userName && "inputError"}`}
-          />
-          {errors.userName && <p className="error">{errors.userName}</p>}
-        </div>
-
+        <Input name="username" label="Username" value={login.userName} onChange={handleChange} errors={errors} />
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
