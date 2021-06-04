@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import Movies from "./components/movies/movies";
 import Customers from "./components/fake/customers";
@@ -14,14 +14,18 @@ import "./App.css";
 function App() {
   return (
     <main className="container">
-      <Route path="/login" component={LoginForm}></Route>
+      <Switch>
+        <Route path="/login" component={LoginForm} />
 
-      <Route path="/movies" component={Movies}></Route>
-      <Route path="/customers" component={Customers}></Route>
-      <Route path="/rentals" component={Rentals}></Route>
-      <Route path="/not-found" component={NotFound}></Route>
+        <Route path="/movies" component={Movies} />
+        <Route path="/customers" component={Customers} />
+        <Route path="/rentals" component={Rentals} />
+        <Route path="/not-found" component={NotFound} />
 
-      <Route path="/parent" component={ParentForm}></Route>
+        <Route path="/parent" component={ParentForm} />
+        <Redirect from="/" exact to="/movies" component />
+        <Redirect to="not-found" />
+      </Switch>
     </main>
   );
 }
