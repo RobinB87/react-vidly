@@ -21,6 +21,7 @@ const LoginForm = () => {
     // Errors object can change when handleSubmit is clicked.
     // This effect is fired when errors object changes.
     // When no error keys exist in the errors object, the console log is fired.
+    debugger;
     if (Object.keys(errors).length > 0) return;
     console.log("Submit login!", login);
     // Here I can for example perform a callback function, which can be added as a param of this login form
@@ -28,41 +29,50 @@ const LoginForm = () => {
 
   return (
     <div>
+      <h1>Login</h1>
+
       <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input
-          id="userName"
-          name="userName"
-          type="text"
-          onChange={handleChange}
-          value={login.userName}
-          className={`${errors.userName && "inputError"}`}
-        />
-        {errors.userName && <p className="error">{errors.userName}</p>}
+        <div className="form-group">
+          <label htmlFor="userName">Username</label>
+          <input
+            autoFocus
+            id="userName"
+            name="userName"
+            type="text"
+            onChange={handleChange}
+            value={login.userName}
+            className={`form-control ${errors.userName && "inputError"}`}
+          />
+          {errors.userName && <p className="error">{errors.userName}</p>}
+        </div>
 
-        <label>Password</label>
-        <input
-          id="password"
-          name="password"
-          type="text"
-          onChange={handleChange}
-          value={login.password}
-          className={`${errors.password && "inputError"}`}
-        />
-        {errors.password && <p className="error">{errors.password}</p>}
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="text"
+            onChange={handleChange}
+            value={login.password}
+            className={`form-control  ${errors.password && "inputError"}`}
+          />
+          {errors.password && <p className="error">{errors.password}</p>}
+        </div>
 
-        <label>Name</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          onChange={handleChange}
-          value={login.name}
-          className={`${errors.name && "inputError"}`}
-        />
-        {errors.name && <p className="error">{errors.name}</p>}
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            onChange={handleChange}
+            value={login.name}
+            className={`form-control ${errors.name && "inputError"}`}
+          />
+          {errors.name && <p className="error">{errors.name}</p>}
+        </div>
 
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary">Login</button>
       </form>
     </div>
   );
