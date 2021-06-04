@@ -33,32 +33,9 @@ const LoginForm = () => {
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
-        <Input name="username" label="Username" value={login.userName} onChange={handleChange} errors={errors} />
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="text"
-            onChange={handleChange}
-            value={login.password}
-            className={`form-control  ${errors.password && "inputError"}`}
-          />
-          {errors.password && <p className="error">{errors.password}</p>}
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            onChange={handleChange}
-            value={login.name}
-            className={`form-control ${errors.name && "inputError"}`}
-          />
-          {errors.name && <p className="error">{errors.name}</p>}
-        </div>
+        <Input name="userName" label="Username" value={login.userName} onChange={handleChange} errors={errors} />
+        <Input name="password" label="Password" value={login.password} onChange={handleChange} errors={errors} />
+        <Input name="name" label="Name" value={login.name} onChange={handleChange} errors={errors} />
 
         <button className="btn btn-primary">Login</button>
       </form>

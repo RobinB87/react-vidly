@@ -9,9 +9,9 @@ const Input = ({ name, label, value, onChange, errors }: any) => {
         type="text"
         onChange={onChange}
         value={value}
-        className={`form-control ${errors.userName && "inputError"}`}
+        className={`form-control ${errors[name] && "inputError"}`}
       />
-      {errors.userName && <p className="error">{errors.userName}</p>}
+      {errors[name] && <p className="error">{errors[name]}</p>}
     </div>
   );
 };
